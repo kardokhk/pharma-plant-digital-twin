@@ -16,6 +16,7 @@ FIG = os.path.join(ROOT, "figures")
 os.makedirs(FIG, exist_ok=True)
 FAM = figstyle.use_print_style()
 OI = figstyle.OKABE_ITO
+WIDTH_MM = 160  # final width in the A4 report (2.54 cm margins); never rescaled afterwards
 POL = {"fixed": ("Fixed time", OI[1], "s"), "temp": ("Product temperature", OI[0], "o"),
        "twin": ("Twin estimate", OI[2], "^")}
 
@@ -43,7 +44,7 @@ def fig_dryer():
     sm = pd.read_csv(os.path.join(RES, "dryer", "summary.csv"))
     tb = pd.read_csv(os.path.join(RES, "dryer", "test_batches.csv"))
     pr = pd.read_csv(os.path.join(RES, "dryer", "endtime_prediction.csv"))
-    fig = fig_mm(183, 62)
+    fig = fig_mm(WIDTH_MM, 64)
     gs = fig.add_gridspec(1, 3, width_ratios=[1.25, 1, 0.8])
     ax = fig.add_subplot(gs[0])
     m = tr.t_min <= 90
@@ -100,14 +101,14 @@ def fig_plant():
     me = pd.read_csv(os.path.join(RES, "optimisation", "main_effects.csv"))
     sr = pd.read_csv(os.path.join(RES, "optimisation", "surrogate_vs_random.csv"))
     sm = json.load(open(os.path.join(RES, "optimisation", "summary.json")))
-    fig = fig_mm(183, 120)
+    fig = fig_mm(WIDTH_MM, 128)
     gs = fig.add_gridspec(2, 3, height_ratios=[1, 1.05])
 
     levers = [("shifts", "Shifts", ["2", "3", "24/7"]), ("campaign", "Campaign\nlength", None),
               ("conwip", "WIP cap", None), ("qc_analysts", "QC\nanalysts", None),
               ("pm_interval", "Press PM\ninterval (h)", None), ("dryer", "Dryer\nend-point", ["fixed", "temp", "twin"]),
               ("coaters", "Coaters", None)]
-    sizes = [4.5, 8, 10, 4, 6, 5, 3]
+    sizes = [5.5, 8, 10, 4.5, 6, 5.5, 3.5]
     sub = gs[0, :2].subgridspec(1, len(levers), width_ratios=[max(n, 3) for n in sizes], wspace=0.05)
     me_axes = []
     for k, (lever, name, order) in enumerate(levers):
@@ -122,7 +123,7 @@ def fig_plant():
         if lever == "dryer":
             lab = ["fixed", "temp", "twin"]
         if lever == "pm_interval":
-            lab = [l if i % 2 == 0 else "" for i, l in enumerate(lab)]
+            lab = [l if i in (0, len(lab) - 1) else "" for i, l in enumerate(lab)]
         if lever == "conwip":
             lab = [l if i % 3 == 0 else "" for i, l in enumerate(lab)]
         ax.set_xticks(xs, lab, fontsize=5.5, rotation=40 if lever == "dryer" else 0,
@@ -145,7 +146,7 @@ def fig_plant():
     for key, lab, col, mk in (("baseline", "Baseline", OI[1], "s"), ("brute_force_best", "Best margin", OI[2], "^")):
         ax.plot(v[key]["cost"][0] / 1e6, 100 * v[key]["service"][0], marker=mk, color=col, ms=5, ls="none",
                 mec="k", mew=0.5, label=lab)
-    ax.set_xlabel("Operating cost (EUR million per quarter)")
+    ax.set_xlabel("Operating cost\n(EUR million per quarter)")
     ax.set_ylabel("Service level (% of demand met)")
     ax.legend(frameon=False, loc="upper left", handlelength=1.0, borderaxespad=0.1, fontsize=6, labelspacing=0.3)
 
@@ -176,7 +177,7 @@ def fig_plant():
     ax.axhline(row.margin_mean / 1e6, color=OI[0], lw=0.8, ls="--")
     ax.text(1.45, row.margin_mean / 1e6, "Best with no new\nequipment (30 reps)", fontsize=6, color=OI[0],
             va="center", ha="left")
-    ax.set_xticks([0, 1], ["Baseline\n(campaign 2, WIP cap 6)", "Best margin\n(campaign 6, WIP cap 11, 2nd coater)"])
+    ax.set_xticks([0, 1], ["Baseline\n(campaign 2,\nWIP cap 6)", "Best margin\n(campaign 6, WIP cap 11,\n2nd coater)"])
     ax.set_xlim(-0.6, 2.4)
     ax.set_ylabel("Quarterly margin, 200 fresh replications\n(EUR million)")
     axes = [me_axes[0]] + [a for a in fig.axes if a not in me_axes]
@@ -191,7 +192,7 @@ def fig_plant():
 def fig_seq():
     b = pd.read_csv(os.path.join(RES, "sequencing", "benchmark.csv"))
     s = pd.read_csv(os.path.join(RES, "sequencing", "milp_scaling.csv"))
-    fig = fig_mm(183, 55)
+    fig = fig_mm(WIDTH_MM, 58)
     gs = fig.add_gridspec(1, 3)
     rng = np.random.default_rng(1)
     ax = fig.add_subplot(gs[0])
