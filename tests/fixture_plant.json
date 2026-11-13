@@ -1,0 +1,20 @@
+{
+ "config": {
+  "shifts": 3,
+  "qc_analysts": 3,
+  "campaign": 4,
+  "conwip": 8,
+  "pm_interval": 180.0,
+  "dryer": "fixed",
+  "coaters": 1
+ },
+ "seed": 11,
+ "kpis": {
+  "released": 177.0,
+  "service_level": 0.885,
+  "margin_eur": 4471550.0,
+  "lead_time_h_mean": 132.76323941720074,
+  "equipment_changeovers": 623.0,
+  "breakdowns": 18.0
+ }
+}

@@ -1,0 +1,162 @@
+{
+ "n_configs": 34560,
+ "reps": 30,
+ "total_runs": 1036800,
+ "brute_force_best": {
+  "shifts": 3,
+  "qc_analysts": 3,
+  "campaign": 6,
+  "conwip": 11,
+  "pm_interval": 220.0,
+  "dryer": "fixed",
+  "coaters": 2
+ },
+ "brute_force_best_margin": 5086430.0,
+ "baseline_margin": 3587130.0,
+ "top10_margin_spread_eur": 16063.333333333023,
+ "surrogate": {
+  "surrogate_r2_unseen": 0.9965107558546031,
+  "surrogate_mae_eur": 33514.42128401688,
+  "regret_eur": 0.0,
+  "random_regret_eur": 50353.33333333349,
+  "chosen_rank": 1.0
+ },
+ "surrogate_regret_max": 16150.0,
+ "random_regret_max": 166806.66666666698,
+ "surrogate_found_true_best": 12,
+ "random_found_true_best": 0,
+ "budget_runs": 5750,
+ "verification": {
+  "baseline": {
+   "config": {
+    "shifts": 3,
+    "qc_analysts": 3,
+    "campaign": 2,
+    "conwip": 6,
+    "pm_interval": 180.0,
+    "dryer": "fixed",
+    "coaters": 1
+   },
+   "config_id": 14880,
+   "margin": [
+    3602990.5,
+    3596619.4875,
+    3609616.0
+   ],
+   "service": [
+    0.6927500000000001,
+    0.6918500000000001,
+    0.693675
+   ],
+   "lead_h": [
+    129.00137178223133,
+    128.838128747789,
+    129.1673380022602
+   ],
+   "cost": [
+    679974.5,
+    676984.3375,
+    682997.0
+   ],
+   "released": [
+    138.555,
+    138.37,
+    138.745
+   ]
+  },
+  "brute_force_best": {
+   "config": {
+    "shifts": 3,
+    "qc_analysts": 3,
+    "campaign": 6,
+    "conwip": 11,
+    "pm_interval": 220.0,
+    "dryer": "fixed",
+    "coaters": 2
+   },
+   "config_id": 16507,
+   "margin": [
+    5073093.0,
+    5064647.7375,
+    5081888.275
+   ],
+   "service": [
+    0.98995,
+    0.9888499999999999,
+    0.9910499999999999
+   ],
+   "lead_h": [
+    155.47348404321158,
+    155.32432726564886,
+    155.61113612701087
+   ],
+   "cost": [
+    816007.0,
+    812315.0,
+    819777.4875
+   ],
+   "released": [
+    198.14,
+    197.894875,
+    198.395
+   ],
+   "margin_gain_vs_baseline": [
+    1470102.5,
+    1459306.6625,
+    1480776.975
+   ],
+   "service_gain_vs_baseline": [
+    0.29719999999999996,
+    0.295725,
+    0.29865
+   ]
+  },
+  "surrogate_choice": {
+   "config": {
+    "shifts": 3,
+    "qc_analysts": 3,
+    "campaign": 6,
+    "conwip": 11,
+    "pm_interval": 220.0,
+    "dryer": "fixed",
+    "coaters": 2
+   },
+   "config_id": 16507,
+   "margin": [
+    5073093.0,
+    5064647.7375,
+    5081888.275
+   ],
+   "service": [
+    0.98995,
+    0.9888499999999999,
+    0.9910499999999999
+   ],
+   "lead_h": [
+    155.47348404321158,
+    155.32432726564886,
+    155.61113612701087
+   ],
+   "cost": [
+    816007.0,
+    812315.0,
+    819777.4875
+   ],
+   "released": [
+    198.14,
+    197.894875,
+    198.395
+   ],
+   "margin_gain_vs_baseline": [
+    1470102.5,
+    1459306.6625,
+    1480776.975
+   ],
+   "service_gain_vs_baseline": [
+    0.29719999999999996,
+    0.295725,
+    0.29865
+   ]
+  }
+ }
+}
